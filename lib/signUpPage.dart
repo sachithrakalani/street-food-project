@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/homePage.dart';
+import 'package:street_food/logInPage.dart';
 
 class SignUpPage extends StatefulWidget {
 
@@ -13,7 +14,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title:Text(
+        title:const Text(
           'Sign Up',style: TextStyle(
             fontWeight:FontWeight.bold,
             fontSize: 25 
@@ -29,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               Column(
                 children: [
-                  Text(
+                  const Text(
                     "Sign Up",
                     style: TextStyle(
                       fontSize: 25,fontWeight: FontWeight.bold
@@ -105,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         onTap: () {
                           Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=>HomePage())
+                          MaterialPageRoute(builder: (context)=>LogInPage())
                           );
                         },
                         child: const Text(
