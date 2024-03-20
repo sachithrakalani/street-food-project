@@ -48,7 +48,7 @@ class _GetStartPageState extends State<GetStartPage> {
                   onPressed:(){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpPage ())
+                      MaterialPageRoute(builder: (context) => HomePage())
                     );
                   },
                   style: ElevatedButton.styleFrom(
