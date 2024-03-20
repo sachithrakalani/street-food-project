@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/const.dart';
 import 'package:street_food/homePage.dart';
+import 'package:street_food/logInPage.dart';
 import 'package:street_food/signUpPage.dart';
 
 class GetStartPage extends StatefulWidget {
