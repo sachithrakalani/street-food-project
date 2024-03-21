@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/firebaseAuth.dart';
+import 'package:street_food/homeAppBarDrawer.dart';
 import 'package:street_food/signUpPage.dart';
+import 'package:street_food/toast.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -9,6 +13,12 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+
+final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +48,7 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   SizedBox(height: 20,),
                   TextField(
-                    //controller: emailController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Enter your Email',
                         border: OutlineInputBorder(
@@ -48,7 +58,7 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   const SizedBox(height: 30),
                   TextField(
-                    //controller: passwordController,
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Enter your Password',
@@ -60,7 +70,7 @@ class _LogInPageState extends State<LogInPage> {
                   const SizedBox(height: 30),
                   GestureDetector(
                   onTap: () {
-                    //signUp();
+                    signIn();
                   },
                   child: Container(
                     width: double.infinity,
@@ -117,5 +127,20 @@ class _LogInPageState extends State<LogInPage> {
         ),
       )
     );
+  }
+
+
+  void signIn() async {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      showToast(message: "User is successfully Signed in");
+      //Navigator.push(context, HomeAppBar());
+    } else {
+      showToast(message: "Some error happend");
+    }
   }
 }

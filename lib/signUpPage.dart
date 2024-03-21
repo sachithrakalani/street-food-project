@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/firebaseAuth.dart';
 import 'package:street_food/logInPage.dart';
+import 'package:street_food/toast.dart';
 
 class SignUpPage extends StatefulWidget {
 
@@ -8,6 +12,27 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  String? shopLocations;
+  var locations = [
+    'Aluthkade',
+    'Kibulawela',
+    'Galle Fort',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   SizedBox(height: 20,),
                   TextField(
-                      //controller: usernameController,
+                      controller: usernameController,
                       decoration: InputDecoration(
                         labelText: 'Enter Username',
                         border: OutlineInputBorder(
@@ -47,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 30),
                     TextField(
-                      //controller: emailController,
+                      controller: emailController,
                       decoration: InputDecoration(
                         labelText: 'Enter your Email',
                         border: OutlineInputBorder(
@@ -57,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 30),
                     TextField(
-                      //controller: passwordController,
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Enter your Password',
@@ -67,9 +92,48 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                     const SizedBox(height: 30),
+                    SizedBox(
+                    height: 60,
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        labelText: 'Select Shop Location',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          value: shopLocations,
+                          items: locations.map((String item) {
+                            return DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              shopLocations = newValue!;
+                            });
+                          },
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
                     GestureDetector(
                     onTap: () {
-                      //signUp();
+                      signUp();
                     },
                     child: Container(
                       width: double.infinity,
@@ -90,6 +154,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
+                  
                   const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -126,5 +191,20 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       )
     );
+  }
+
+
+  void signUp() async {
+    String userName = usernameController.text;
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      showToast(message: "User is successfully created");
+    } else {
+      showToast(message: "Some error happend");
+    }
   }
 }
