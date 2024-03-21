@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/firebaseAuth.dart';
-import 'package:street_food/homeAppBarDrawer.dart';
 import 'package:street_food/signUpPage.dart';
 import 'package:street_food/toast.dart';
 
