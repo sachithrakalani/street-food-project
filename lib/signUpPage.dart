@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/firebaseAuth.dart';
@@ -67,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontSize: 25,fontWeight: FontWeight.bold
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     TextField(
                         controller: usernameController,
                         decoration: InputDecoration(
@@ -137,7 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     if (shopLocations == 'Aluthkade')
                       Column(
                         children: [
@@ -602,6 +603,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
     if (user != null) {
       showToast(message: "User is successfully created");
+      Map<String, dynamic> data = {
+        "ShopName":shopNameController.text,
+        "Email": email,
+        "Eddress": addressController.text,
+        "ContactNo": contactNoController.text,
+        "RegistrationNo": registrationNoController.text,
+      };
+      
+      FirebaseFirestore.instance.collection(shopLocations!).add(data);
     } else {
       showToast(message: "Some error happend");
     }
