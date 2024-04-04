@@ -610,7 +610,6 @@ class _SignUpPageState extends State<SignUpPage> {
         "ContactNo": contactNoController.text,
         "RegistrationNo": registrationNoController.text,
       };
-      
       FirebaseFirestore.instance.collection(shopLocations!).add(data);
     } else {
       showToast(message: "Some error happend");
