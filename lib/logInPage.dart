@@ -32,96 +32,98 @@ final FirebaseAuthServices _auth = FirebaseAuthServices();
         ),centerTitle: true,
       ),
       body:Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  const Text(
-                    "Login",
-                    style: TextStyle(
-                      fontSize: 25,fontWeight: FontWeight.bold
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    const Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 25,fontWeight: FontWeight.bold
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20,),
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Enter your Email',
+                    const SizedBox(height: 20,),
+                    TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Enter your Email',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: 'Enter your Password',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                  TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Enter your Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  GestureDetector(
-                  onTap: () {
-                    signIn();
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
+                    const SizedBox(height: 30),
+                    GestureDetector(
+                    onTap: () {
+                      signIn();
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                  ),
-                  ),
-                  const SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Already have an account?",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=>SignUpPage())
-                          );
-                        },
-                        child: const Text(
-                          'Sign Up',
+                      child: const Center(
+                        child: Text(
+                          'Login',
                           style: TextStyle(
-                            color: Colors.blue,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 25,
                           ),
                         ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ],
+                      ),
+                    ),
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Already have an account?",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=>SignUpPage())
+                            );
+                          },
+                          child: const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       )

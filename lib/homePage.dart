@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Food Category',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
