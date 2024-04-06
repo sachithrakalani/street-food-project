@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/aluthkadeSingleShopPage.dart';
 
 
 class AluthkadeProfilePage extends StatefulWidget {
@@ -65,14 +66,14 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => SingleDoctorPage(
-                            //       doctorData: doctorData,
-                            //     ),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AluthkadeSinglepage(
+                                  aluthkadeData: aluthkadeData,
+                                ),
+                              ),
+                            );
                           },
                           child: Card(
                             //color: kbcardColor,
