@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/galleFortSingleShopPage.dart';
 
 
 class GalleFortProfilePage extends StatefulWidget {
@@ -65,14 +66,14 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => SingleDoctorPage(
-                            //       doctorData: doctorData,
-                            //     ),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => GalleFortSinglePage(
+                                  galleFortData: gallefortData,
+                                ),
+                              ),
+                            );
                           },
                           child: Card(
                             //color: kbcardColor,
