@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_food/aluthkadeProfilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -47,6 +48,14 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InkWell(
                     onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AluthkadeProfilePage(
+                            
+                          ),
+                        ),
+                      );
                     },
                     child: Image.asset(
                       'assets/images/ho2.jpg',
@@ -57,7 +66,14 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 10,),
                   InkWell(
                     onTap: () {
-                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AluthkadeProfilePage(
+                            
+                          ),
+                        ),
+                      );
                     },
                     child: Image.asset(
                       'assets/images/ho3.jpg',
