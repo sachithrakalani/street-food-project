@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:street_food/const.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,17 +11,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kbappbarcolor,
-        title: const Text(
-          'Home',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black,
-          ),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
         child: Column(
@@ -91,6 +79,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            
             //const SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

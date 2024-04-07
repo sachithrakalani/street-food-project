@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/const.dart';
-import 'package:street_food/homePage.dart';
-import 'package:street_food/logInPage.dart';
-import 'package:street_food/signUpPage.dart';
+import 'package:street_food/homeAppBarDrawer.dart';
 
 class GetStartPage extends StatefulWidget {
   const GetStartPage({super.key});
@@ -48,7 +46,7 @@ class _GetStartPageState extends State<GetStartPage> {
                   onPressed:(){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage())
+                      MaterialPageRoute(builder: (context) => HomeAppBar())
                     );
                   },
                   style: ElevatedButton.styleFrom(
