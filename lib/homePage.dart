@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/aluthkadeProfilePage.dart';
+import 'package:street_food/shopDetailspage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AluthkadeProfilePage(
+                          builder: (context) => ShopDetailsPage(
                             
                           ),
                         ),

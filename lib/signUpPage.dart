@@ -603,14 +603,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
     if (user != null) {
       showToast(message: "User is successfully created");
-      Map<String, dynamic> data = {
-        "ShopName":shopNameController.text,
-        "Email": email,
-        "Eddress": addressController.text,
-        "ContactNo": contactNoController.text,
-        "RegistrationNo": registrationNoController.text,
-      };
-      FirebaseFirestore.instance.collection(shopLocations!).add(data);
+      // Map<String, dynamic> data = {
+      //   "ShopName":shopNameController.text,
+      //   "Email": email,
+      //   "Eddress": addressController.text,
+      //   "ContactNo": contactNoController.text,
+      //   "RegistrationNo": registrationNoController.text,
+      // };
+      // FirebaseFirestore.instance.collection(shopLocations!).add(data);
+      Navigator.pushNamed(context, "/shopdetails");
     } else {
       showToast(message: "Some error happend");
     }
