@@ -59,7 +59,32 @@ class _MapPageState extends State<MapPage> {
                   ),
                   gestureRecognizers: Set()
                     ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer())),
-                  
+                  markers: {
+                    const Marker(
+                      markerId: MarkerId('Kibulawala'),
+                      position: LatLng(6.8759, 79.9293),
+                      infoWindow: InfoWindow(
+                        title: "Kibulawala",
+                        snippet: "Street food",
+                      ),
+                    ),
+                    const Marker(
+                      markerId: MarkerId('Aluthkade'),
+                      position: LatLng(6.9378, 79.8631),
+                      infoWindow: InfoWindow(
+                        title: "Aluthkade",
+                        snippet: "Street food",
+                      ),
+                    ),
+                    const Marker(
+                      markerId: MarkerId('Galle Fort'),
+                      position: LatLng(6.0252, 80.2161),
+                      infoWindow: InfoWindow(
+                        title: "Galle Fort",
+                        snippet: "Street food",
+                      ),
+                    ),
+                  },
                 ),
               ),
               Positioned(
