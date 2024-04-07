@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/firebaseAuth.dart';
@@ -6,7 +5,6 @@ import 'package:street_food/logInPage.dart';
 import 'package:street_food/toast.dart';
 
 class SignUpPage extends StatefulWidget {
-
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -18,12 +16,10 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  TextEditingController shopNameController = new TextEditingController();
-  TextEditingController registrationNoController = new TextEditingController();
-  TextEditingController addressController = new TextEditingController();
-  TextEditingController contactNoController = new TextEditingController();
-  
-  
+  TextEditingController shopNameController = TextEditingController();
+  TextEditingController registrationNoController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController contactNoController = TextEditingController();
 
   @override
   void dispose() {
@@ -45,18 +41,19 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title:const Text(
-          'Sign Up',style: TextStyle(
-            fontWeight:FontWeight.bold,
-            fontSize: 25 
+        title: const Text(
+          'Sign Up',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
           ),
         ),
         centerTitle: true,
       ),
-      body:SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 90),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -64,473 +61,62 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     const Text(
                       "Sign Up",
-                      style: TextStyle(
-                        fontSize: 25,fontWeight: FontWeight.bold
-                      ),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 20,),
-                    TextField(
-                        controller: usernameController,
-                        decoration: InputDecoration(
-                          labelText: 'Enter Username',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                    const SizedBox(height: 50),
+                    TextFormField(
+                      controller: usernameController,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: 'Enter Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      const SizedBox(height: 30),
-                      TextField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          labelText: 'Enter your Email',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      TextField(
-                        controller: passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Enter your Password',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      SizedBox(
-                      height: 60,
-                      child: InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Select Shop Location',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton(
-                            value: shopLocations,
-                            items: locations.map((String item) {
-                              return DropdownMenuItem(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                shopLocations = newValue!;
-                              });
-                            },
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Username is required';
+                        }
+                        return null;
+                      },
                     ),
-                    const SizedBox(height: 30),
-                    if (shopLocations == 'Aluthkade')
-                      Column(
-                        children: [
-                          const Text(
-                            'Shop Details',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Shop Name',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 60),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 60,
-                                      child: TextField(
-                                        controller: shopNameController,
-                                        decoration: InputDecoration(
-                                          labelText: 'Enter Shop Name',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Registration No',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: registrationNoController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter Registration No',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Address',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 50),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: addressController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter address',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Contact No',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: contactNoController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter your Contact No',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Enter your Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                      if (shopLocations == 'Kibulawela')
-                      Column(
-                        children: [
-                          const Text(
-                            'Shop Details',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Shop Name',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 60),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 60,
-                                      child: TextField(
-                                        controller: shopNameController,
-                                        decoration: InputDecoration(
-                                          labelText: 'Enter Shop Name',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Registration No',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: registrationNoController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter Registration No',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Address',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 50),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: addressController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter address',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Contact No',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: contactNoController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter your Contact No',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Email is required';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: 'Enter your Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                      if (shopLocations == 'Galle Fort')
-                      Column(
-                        children: [
-                          const Text(
-                            'Shop Details',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Shop Name',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 60),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 60,
-                                      child: TextField(
-                                        controller: shopNameController,
-                                        decoration: InputDecoration(
-                                          labelText: 'Enter Shop Name',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Registration No',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: registrationNoController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter Registration No',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Address',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 50),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: addressController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter address',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Contact No',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 25,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
-                                  child: TextField(
-                                    controller: contactNoController,
-                                    decoration: InputDecoration(
-                                      labelText: 'Enter your Contact No',
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
-                      ),
-                    const SizedBox(height: 30),
-                      GestureDetector(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password is required';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 60),
+                    GestureDetector(
                       onTap: () {
                         signUp();
                       },
@@ -553,7 +139,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                     ),
-                    
                     const SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -568,8 +153,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context)=>LogInPage())
+                              context,
+                              MaterialPageRoute(builder: (context) => LogInPage()),
                             );
                           },
                           child: const Text(
@@ -589,31 +174,34 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         ),
-      )
+      ),
     );
   }
-
 
   void signUp() async {
     String userName = usernameController.text;
     String email = emailController.text;
     String password = passwordController.text;
 
+    if (userName.isEmpty || email.isEmpty || password.isEmpty) {
+      showToast(message: "All fields are required");
+      return;
+    }
+    if (int.tryParse(password) == null) {
+    showToast(message: "Password should be an integer");
+    return;
+  }
+
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
       showToast(message: "User is successfully created");
-      // Map<String, dynamic> data = {
-      //   "ShopName":shopNameController.text,
-      //   "Email": email,
-      //   "Eddress": addressController.text,
-      //   "ContactNo": contactNoController.text,
-      //   "RegistrationNo": registrationNoController.text,
-      // };
-      // FirebaseFirestore.instance.collection(shopLocations!).add(data);
+      usernameController.clear();
+      emailController.clear();
+      passwordController.clear();
       Navigator.pushNamed(context, "/shopdetails");
     } else {
-      showToast(message: "Some error happend");
+      showToast(message: "Some error happened");
     }
   }
 }
