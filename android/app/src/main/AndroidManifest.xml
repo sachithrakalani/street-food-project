@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.street_food">    
     <application
         android:label="street_food"
         android:name="${applicationName}"
@@ -29,5 +30,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBEUJs3QNzSY8XNFGmL3IFKDntltDLQFfY"/>
     </application>
 </manifest>

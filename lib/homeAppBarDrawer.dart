@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/homePage.dart';
 import 'package:street_food/logInPage.dart';
+import 'package:street_food/mapPage.dart';
 import 'package:street_food/signUpPage.dart';
 
 
@@ -57,6 +58,16 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 ),
               ),
               MenuList(press: () {}, title: 'Home', icon: Icons.home),
+              MenuList(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapPage()),
+                );
+              }, 
+              title: 'Location', 
+              icon: Icons.map
+            ),
               const Divider(
                 color: Colors.blue,
               ),
