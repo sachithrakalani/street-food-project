@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/homePage.dart';
 import 'package:street_food/logInPage.dart';
 import 'package:street_food/mapPage.dart';
@@ -17,7 +18,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: kbappbarcolor,
         title: const Text(
           'Home',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -40,7 +41,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/paw.jpg'),
+              image: AssetImage('assets/images/paw.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -54,7 +55,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   backgroundImage: AssetImage('assets/images/p.jpg'),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: kbappbarcolor,
                 ),
               ),
               MenuList(press: () {}, title: 'Home', icon: Icons.home),
@@ -69,7 +70,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
               icon: Icons.map
             ),
               const Divider(
-                color: Colors.blue,
+                color:kbappbarcolor,
               ),
               MenuList(
                   press: () {
@@ -116,7 +117,7 @@ class MenuList extends StatelessWidget {
         title: Text(title),
         leading: Icon(
           icon,
-          color: Colors.blue,
+          color: kbappbarcolor,
         ),
       ),
     );

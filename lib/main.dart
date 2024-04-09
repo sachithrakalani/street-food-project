@@ -2,6 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/getStartPage.dart';
+import 'package:street_food/homeAppBarDrawer.dart';
+import 'package:street_food/homePage.dart';
+import 'package:street_food/shopDetailspage.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,11 +30,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: GetStartPage(),
+      routes: {
+        '/': (context) => const GetStartPage(),
+        '/shopdetails':(context)=> const ShopDetailsPage (),
+        '/home':(context)=> const HomeAppBar(),
+        //'/singleshoppage':(context)=> const ShopDetailsPage (),
+      },
     );
   }
 }

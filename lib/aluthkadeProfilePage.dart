@@ -43,7 +43,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/paw.jpg'),
+            image: AssetImage('assets/images/paw.jpg'),
             fit: BoxFit.cover,
           ),
         ),
