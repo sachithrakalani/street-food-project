@@ -94,11 +94,12 @@ class _AddFoodItemsGalleFortState extends State<AddFoodItemsGalleFort> {
                     } else {
                       Map<String, dynamic> data = {
                           "Shop Name": shopName,
+                          "Registration No":RegistrationNo,
                           "Food Item Name": foodNameController.text,
                           "Food Ingredients": ingredientsController.text,
                           "Food Prices": pricesContriller.text,
                         };
-                        FirebaseFirestore.instance.collection('Food Items').add(data);
+                        FirebaseFirestore.instance.collection('Galle Fort Food Items').add(data);
                         Navigator.pushNamed(context, "/home");
                       }
                     },

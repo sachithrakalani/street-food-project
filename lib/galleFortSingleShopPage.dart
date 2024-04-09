@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:street_food/addFoodItemsAluthkade.dart';
 import 'package:street_food/addFoodItemsGalleFort.dart';
 
 class GalleFortSinglePage extends StatefulWidget {
@@ -11,14 +11,27 @@ class GalleFortSinglePage extends StatefulWidget {
 }
 
 class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
+  List<DocumentSnapshot> foodItems = [];
   
-
+  Future<void> getFoodItems() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Galle Fort Food Items')
+          .where('Registration No', isEqualTo: widget.galleFortData['Registration No'])
+          .get();
+      setState(() {
+        foodItems = querySnapshot.docs;
+      });
+    } catch (e) {
+      print('Error fetching vaccinations: $e');
+    }
+  }
   
 
   @override
   void initState() {
     super.initState();
-    
+    getFoodItems();
   }
   @override
   Widget build(BuildContext context) {
@@ -54,9 +67,26 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                       ),
                     ),
                   ),
-                  
+                  ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: foodItems.length,
+                  itemBuilder: (context, index) {
+                    final foodItemsData = foodItems[index].data() as Map<String, dynamic>;
+                    final foodName = foodItemsData['Food Item Name'];
+                    final foodPrices = foodItemsData['Food Prices'];
+                    final foodIngredients = foodItemsData['Food Ingredients'];
+                    return ListTile(
+                      title: Text(
+                        'Food Name: $foodName',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        'Food Prices: $foodPrices\nFood Ingredients: $foodIngredients', 
+                      ),
+                    );
+                  },
+                ),
                 ],
-                
               ),
             ),
             const SizedBox(
