@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/getStartPage.dart';
 import 'package:street_food/homeAppBarDrawer.dart';
-import 'package:street_food/homePage.dart';
 import 'package:street_food/shopDetailspage.dart';
 
 Future main() async {

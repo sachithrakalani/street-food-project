@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:street_food/aluthkadeProfilePage.dart';
 import 'package:street_food/galleFortProfilePage.dart';
 import 'package:street_food/kibulawelaProfilePage.dart';
-import 'package:street_food/shopDetailspage.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
