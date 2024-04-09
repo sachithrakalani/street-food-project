@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/kibulawelaSingleShopPage.dart';
 
 
@@ -35,7 +36,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: kBgcolor,
+        backgroundColor: kBgcolor,
         title: Text("Kibulawela Profiles"),
       ),
       body: Container(
@@ -43,7 +44,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/paw.jpg'),
+            image: AssetImage('assets/images/back2.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -76,7 +77,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
                             );
                           },
                           child: Card(
-                            //color: kbcardColor,
+                            color: kbcardColor,
                             child: ListTile(
                               leading: const CircleAvatar(
                                 maxRadius: 40,

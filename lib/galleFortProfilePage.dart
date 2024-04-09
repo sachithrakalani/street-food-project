@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/galleFortSingleShopPage.dart';
 
 
@@ -35,7 +36,7 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: kBgcolor,
+        backgroundColor: kBgcolor,
         title: const Text("Galle Fort Profiles"),
       ),
       body: Container(
@@ -43,7 +44,7 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/paw.jpg'),
+            image: AssetImage('assets/images/back2.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -51,7 +52,7 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
           padding: const EdgeInsets.all(20.0),
           child: isLoading ? const Center(
               child: CircularProgressIndicator()
-            ) // Show loading indicator
+            ) 
             : Column(
               children: [
                 Expanded(
@@ -76,7 +77,7 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
                             );
                           },
                           child: Card(
-                            //color: kbcardColor,
+                            color: kbcardColor,
                             child: ListTile(
                               leading: const CircleAvatar(
                                 maxRadius: 40,
