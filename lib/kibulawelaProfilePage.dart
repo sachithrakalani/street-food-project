@@ -9,7 +9,7 @@ class KibulawelaProfilePage extends StatefulWidget {
 }
 
 class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
-  List<DocumentSnapshot> kibulawela = [];
+  List<DocumentSnapshot> kibulawala = [];
   bool isLoading = true; 
 
   Future<void> getDocId() async {
@@ -17,7 +17,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('Kibulawela').get();
       setState(() {
-        kibulawela = querySnapshot.docs;
+        kibulawala = querySnapshot.docs;
         isLoading = false; 
       });
     } catch (e) {
@@ -56,12 +56,12 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: kibulawela.length,
+                    itemCount: kibulawala.length,
                     itemBuilder: (context, index) {
-                      final kibulawelaData = kibulawela[index].data() as Map<String, dynamic>;
-                      final ShopName = kibulawelaData['ShopName'];
-                      final Address = kibulawelaData['Eddress'];
-                      final ContactNo = kibulawelaData['ContactNo'];
+                      final kibulawalaData = kibulawala[index].data() as Map<String, dynamic>;
+                      final ShopName = kibulawalaData['ShopName'];
+                      final Address = kibulawalaData['Eddress'];
+                      final ContactNo = kibulawalaData['ContactNo'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: GestureDetector(
@@ -69,8 +69,8 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => KibulawelaSinglePage(
-                                  kibulawelaData: kibulawelaData,
+                                builder: (context) => KibulawalaSinglePage(
+                                  kibulawalaData: kibulawalaData,
                                 ),
                               ),
                             );

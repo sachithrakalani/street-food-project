@@ -4,8 +4,8 @@ import 'package:street_food/const.dart';
 import 'package:street_food/toast.dart';
 
 class AddFoodItemsKibulawala extends StatefulWidget {
-  final Map<String, dynamic> kibulawelaData;
-  const AddFoodItemsKibulawala({Key? key, required this.kibulawelaData}) : super(key: key);
+  final Map<String, dynamic> kibulawalaData;
+  const AddFoodItemsKibulawala({Key? key, required this.kibulawalaData}) : super(key: key);
 
   @override
   State<AddFoodItemsKibulawala> createState() => _AddFoodItemsKibulawalaState();
@@ -21,8 +21,8 @@ class _AddFoodItemsKibulawalaState extends State<AddFoodItemsKibulawala> {
 
   @override
   Widget build(BuildContext context) {
-    final String shopName = widget.kibulawelaData['ShopName'] ?? '';
-    final String RegistrationNo = widget.kibulawelaData['RegistrationNo'] ?? '';
+    final String shopName = widget.kibulawalaData['ShopName'] ?? '';
+    final String RegistrationNo = widget.kibulawalaData['RegistrationNo'] ?? '';
     
     return Scaffold(
       appBar: AppBar(
