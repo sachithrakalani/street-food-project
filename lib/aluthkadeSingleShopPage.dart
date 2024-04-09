@@ -12,6 +12,7 @@ class AluthkadeSinglePage extends StatefulWidget {
 
 class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
   List<DocumentSnapshot> foodItems = [];
+  List<DocumentSnapshot> aluthkadeReviews = [];
 
   Future<void> getFoodItems() async {
     try {
@@ -26,11 +27,25 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
       print('Error fetching vaccinations: $e');
     }
   }
+  Future<void> getreviews() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Aluthkade Reviews')
+          .where('Registration No', isEqualTo: widget.aluthkadeData['Registration No'])
+          .get();
+      setState(() {
+       aluthkadeReviews = querySnapshot.docs;
+      });
+    } catch (e) {
+      print('Error fetching vaccinations: $e');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     getFoodItems();
+    getreviews();
   }
 
   @override
@@ -54,9 +69,9 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
                     radius: 130,
                     backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
                   ),
-                  _buildDetailItem('Bording Name', aluthkadeData['ShopName']),
-                  _buildDetailItem('address', aluthkadeData['Eddress']),
-                  _buildDetailItem('contactNo', aluthkadeData['ContactNo']),
+                  _buildDetailItem('Shop Name', aluthkadeData['ShopName']),
+                  _buildDetailItem('Address', aluthkadeData['Eddress']),
+                  _buildDetailItem('Contact No', aluthkadeData['ContactNo']),
                   const SizedBox(height: 20),
                   const Center(
                     child: Text(
@@ -90,6 +105,36 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
                     ),
                   ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: aluthkadeReviews.length,
+                      itemBuilder: (context, index) {
+                        final reviewsData = aluthkadeReviews[index].data() as Map<String, dynamic>;
+                        final userreview = reviewsData['Review'];
+                        final userrating = reviewsData['Rating'];
+                        final date = reviewsData['Date'];
+                        
+                        return ListTile(
+                          title: Text(
+                            'Review: $userreview',
+                            style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Rating: $userrating / 5.0',
+                                style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),
+                              ),
+                              Text(
+                                'Date: $date',
+                                style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                 ],
               ),
             ),
@@ -112,9 +157,9 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
             },
             heroTag: 'addFoodItems',
             backgroundColor: Colors.orange,
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           FloatingActionButton(
             onPressed: () {
               Navigator.push(
@@ -128,7 +173,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
             },
             heroTag: 'addReviews',
             backgroundColor: Colors.orange,
-            child: Icon(Icons.rate_review),
+            child: const Icon(Icons.rate_review),
           ),
         ],
       ),
