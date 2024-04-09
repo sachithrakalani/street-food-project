@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:street_food/addFoodItemsAluthkade.dart';
+import 'package:street_food/addFoodItemsGalleFort.dart';
 
 class GalleFortSinglePage extends StatefulWidget {
   final Map<String, dynamic> galleFortData;
@@ -45,7 +47,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                   const SizedBox(height: 20),
                   const Center(
                     child: Text(
-                      'Reviews & Ratings',
+                      'Food Items',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25
@@ -57,7 +59,36 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                 
               ),
             ),
-            
+            const SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddFoodItemsGalleFort(
+                        galleFortData: galleFortData,
+                      )
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.orange,
+                  fixedSize: const Size(100, 60),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60),
+                  ),
+                ),
+                child: const Text(
+                  'Add Food Items',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
           ],
         ),
       ),
