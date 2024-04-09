@@ -13,6 +13,7 @@ class GalleFortSinglePage extends StatefulWidget {
 
 class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
   List<DocumentSnapshot> foodItems = [];
+  List<DocumentSnapshot> galleFortReviews = [];
 
   Future<void> getFoodItems() async {
     try {
@@ -27,11 +28,25 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
       print('Error fetching vaccinations: $e');
     }
   }
+  Future<void> getreviews() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Galle Fort Reviews')
+          .where('Registration No', isEqualTo: widget.galleFortData['Registration No'])
+          .get();
+      setState(() {
+       galleFortReviews = querySnapshot.docs;
+      });
+    } catch (e) {
+      print('Error fetching vaccinations: $e');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     getFoodItems();
+    getreviews();
   }
 
   @override
@@ -91,6 +106,36 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
                     ),
                   ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: galleFortReviews.length,
+                      itemBuilder: (context, index) {
+                        final reviewsData = galleFortReviews[index].data() as Map<String, dynamic>;
+                        final userreview = reviewsData['Review'];
+                        final userrating = reviewsData['Rating'];
+                        final date = reviewsData['Date'];
+                        
+                        return ListTile(
+                          title: Text(
+                            'Review: $userreview',
+                            style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Rating: $userrating / 5.0',
+                                style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),
+                              ),
+                              Text(
+                                'Date: $date',
+                                style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                 ],
               ),
             ),

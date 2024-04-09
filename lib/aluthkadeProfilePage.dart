@@ -44,7 +44,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/paw.jpg'),
+            image: AssetImage('assets/images/back2.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -77,7 +77,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
                             );
                           },
                           child: Card(
-                            //color: kbcardColor,
+                            color: kbcardColor,
                             child: ListTile(
                               leading: const CircleAvatar(
                                 maxRadius: 40,
