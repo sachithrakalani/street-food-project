@@ -19,7 +19,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Aluthkade Food Items')
-          .where('Registration No', isEqualTo: widget.aluthkadeData['Registration No'])
+          .where('Registration No', isEqualTo: widget.aluthkadeData['RegistrationNo'])
           .get();
       setState(() {
         foodItems = querySnapshot.docs;
@@ -32,7 +32,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Aluthkade Reviews')
-          .where('Registration No', isEqualTo: widget.aluthkadeData['Registration No'])
+          .where('Registration No', isEqualTo: widget.aluthkadeData['RegistrationNo'])
           .get();
       setState(() {
        aluthkadeReviews = querySnapshot.docs;
@@ -56,7 +56,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBgcolor,
-        title: Text('Shop Details'),
+        title: Text('Aluthkade Street Shop Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -71,7 +71,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
                     backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
                   _buildDetailItem('Shop Name', aluthkadeData['ShopName']),
-                  _buildDetailItem('Address', aluthkadeData['Eddress']),
+                  _buildDetailItem('Address', aluthkadeData['Address']),
                   _buildDetailItem('Contact No', aluthkadeData['ContactNo']),
                   const SizedBox(height: 20),
                   const Center(

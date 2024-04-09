@@ -143,9 +143,8 @@ class _AddReviewsGalleFortState extends State<AddReviewsGalleFort> {
                           "Rating": rating,
                           "Date": '${selectedDate!.toLocal()}'.split(' ')[0],
                         };
-                        await FirebaseFirestore.instance
-                            .collection('Galle Fort Reviews')
-                            .add(data);
+                        await FirebaseFirestore.instance.collection('Galle Fort Reviews').add(data);
+                        Navigator.pushNamed(context, "/home");
                       } catch (e) {
                         print("Error adding review: $e");
                       }

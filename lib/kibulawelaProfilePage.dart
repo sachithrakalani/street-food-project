@@ -61,7 +61,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
                     itemBuilder: (context, index) {
                       final kibulawalaData = kibulawala[index].data() as Map<String, dynamic>;
                       final ShopName = kibulawalaData['ShopName'];
-                      final Address = kibulawalaData['Eddress'];
+                      final Address = kibulawalaData['Address'];
                       final ContactNo = kibulawalaData['ContactNo'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),

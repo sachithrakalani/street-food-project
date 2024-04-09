@@ -61,7 +61,7 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
                     itemBuilder: (context, index) {
                       final gallefortData = gallefort[index].data() as Map<String, dynamic>;
                       final ShopName = gallefortData['ShopName'];
-                      final Address = gallefortData['Eddress'];
+                      final Address = gallefortData['Address'];
                       final ContactNo = gallefortData['ContactNo'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),

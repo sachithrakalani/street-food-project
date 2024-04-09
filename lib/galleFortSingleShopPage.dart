@@ -20,7 +20,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Galle Fort Food Items')
-          .where('Registration No', isEqualTo: widget.galleFortData['Registration No'])
+          .where('Registration No', isEqualTo: widget.galleFortData['RegistrationNo'])
           .get();
       setState(() {
         foodItems = querySnapshot.docs;
@@ -33,7 +33,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Galle Fort Reviews')
-          .where('Registration No', isEqualTo: widget.galleFortData['Registration No'])
+          .where('Registration No', isEqualTo: widget.galleFortData['RegistrationNo'])
           .get();
       setState(() {
        galleFortReviews = querySnapshot.docs;
@@ -57,7 +57,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBgcolor,
-        title: Text('Shop Details'),
+        title: Text('Galle Fort Street Shop Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -71,9 +71,9 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                     radius: 130,
                     backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
-                  _buildDetailItem('Bording Name', galleFortData['ShopName']),
-                  _buildDetailItem('address', galleFortData['Eddress']),
-                  _buildDetailItem('contactNo', galleFortData['ContactNo']),
+                  _buildDetailItem('Shop Name', galleFortData['ShopName']),
+                  _buildDetailItem('Address', galleFortData['Address']),
+                  _buildDetailItem('Contact No', galleFortData['ContactNo']),
                   const SizedBox(height: 20),
                   const Center(
                     child: Text(

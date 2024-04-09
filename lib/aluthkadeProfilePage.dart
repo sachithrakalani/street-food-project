@@ -61,7 +61,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
                     itemBuilder: (context, index) {
                       final aluthkadeData = aluthkade[index].data() as Map<String, dynamic>;
                       final ShopName = aluthkadeData['ShopName'];
-                      final Address = aluthkadeData['Eddress'];
+                      final Address = aluthkadeData['Address'];
                       final ContactNo = aluthkadeData['ContactNo'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),

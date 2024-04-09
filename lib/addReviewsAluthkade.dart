@@ -143,9 +143,8 @@ class _AddReviewsAluthkadeState extends State<AddReviewsAluthkade> {
                           "Rating": rating,
                           "Date": '${selectedDate!.toLocal()}'.split(' ')[0],
                         };
-                        await FirebaseFirestore.instance
-                            .collection('Aluthkade Reviews')
-                            .add(data);
+                        await FirebaseFirestore.instance.collection('Aluthkade Reviews').add(data);
+                        Navigator.pushNamed(context, "/home");
                       } catch (e) {
                         print("Error adding review: $e");
                       }

@@ -20,7 +20,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Kibulawala Food Items')
-          .where('Registration No', isEqualTo: widget.kibulawalaData['Registration No'])
+          .where('Registration No', isEqualTo: widget.kibulawalaData['RegistrationNo'])
           .get();
       setState(() {
         foodItems = querySnapshot.docs;
@@ -33,7 +33,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Kibulawala Reviews')
-          .where('Registration No', isEqualTo: widget.kibulawalaData['Registration No'])
+          .where('Registration No', isEqualTo: widget.kibulawalaData['RegistrationNo'])
           .get();
       setState(() {
        kibulawalaReviews = querySnapshot.docs;
@@ -57,7 +57,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBgcolor,
-        title: Text('Shop Details'),
+        title: Text('Kibulawala Street Shop Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -71,9 +71,9 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
                     radius: 130,
                     backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
-                  _buildDetailItem('Bording Name', kibulawalaData['ShopName']),
-                  _buildDetailItem('address', kibulawalaData['Eddress']),
-                  _buildDetailItem('contactNo', kibulawalaData['ContactNo']),
+                  _buildDetailItem('Shop Name', kibulawalaData['ShopName']),
+                  _buildDetailItem('Address', kibulawalaData['Address']),
+                  _buildDetailItem('Contact No', kibulawalaData['ContactNo']),
                   const SizedBox(height: 20),
                   const Center(
                     child: Text(

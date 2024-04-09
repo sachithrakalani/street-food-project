@@ -16,6 +16,14 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
   TextEditingController addressController = TextEditingController();
   TextEditingController contactNoController = TextEditingController();
 
+  Future<bool> checkRegistrationExists(String registrationNo) async {
+  QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+      .collection(shopLocations!)
+      .where('RegistrationNo', isEqualTo: registrationNo)
+      .get();
+  return querySnapshot.docs.isNotEmpty;
+}
+
   
   String? shopLocations;
   var locations = [
@@ -241,17 +249,27 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
   }
 
   void save() async {
-    if(shopLocations != null){
+  if (shopNameController.text.isNotEmpty &&
+      addressController.text.isNotEmpty &&
+      contactNoController.text.isNotEmpty &&
+      registrationNoController.text.isNotEmpty &&
+      shopLocations != null) {
+    bool registrationExists = await checkRegistrationExists(registrationNoController.text);
+
+    if (registrationExists) {
+      showToast(message: "This registration number is already registered.");
+    } else {
       Map<String, dynamic> data = {
-        "ShopName":shopNameController.text,
-        "Eddress": addressController.text,
+        "ShopName": shopNameController.text,
+        "Address": addressController.text,
         "ContactNo": contactNoController.text,
         "RegistrationNo": registrationNoController.text,
       };
       FirebaseFirestore.instance.collection(shopLocations!).add(data);
       Navigator.pushNamed(context, "/home");
-    } else {
-      showToast(message: "Some error happend");
     }
+  } else {
+    showToast(message: "Please fill in all fields.");
   }
+}
 }
