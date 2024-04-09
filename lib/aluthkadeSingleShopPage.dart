@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:street_food/addFoodItemsAluthkade.dart';
 import 'package:street_food/addReviewsAluthkade.dart';
+import 'package:street_food/const.dart';
 class AluthkadeSinglePage extends StatefulWidget {
   final Map<String, dynamic> aluthkadeData;
   const AluthkadeSinglePage({Key? key, required this.aluthkadeData}) : super(key: key);
@@ -54,7 +55,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: kBgcolor,
         title: Text('Shop Details'),
       ),
       body: Padding(
@@ -67,7 +68,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
                 children: [
                   const CircleAvatar(
                     radius: 130,
-                    backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
+                    backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
                   _buildDetailItem('Shop Name', aluthkadeData['ShopName']),
                   _buildDetailItem('Address', aluthkadeData['Eddress']),

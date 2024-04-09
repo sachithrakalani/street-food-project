@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:street_food/addFoodItemsGalleFort.dart';
 import 'package:street_food/addReviewsGalleFort.dart';
+import 'package:street_food/const.dart';
 
 class GalleFortSinglePage extends StatefulWidget {
   final Map<String, dynamic> galleFortData;
@@ -55,7 +56,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: kBgcolor,
         title: Text('Shop Details'),
       ),
       body: Padding(
@@ -68,7 +69,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                 children: [
                   const CircleAvatar(
                     radius: 130,
-                    backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
+                    backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
                   _buildDetailItem('Bording Name', galleFortData['ShopName']),
                   _buildDetailItem('address', galleFortData['Eddress']),

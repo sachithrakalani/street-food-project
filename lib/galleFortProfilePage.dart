@@ -82,7 +82,7 @@ class _GalleFortProfilePageState extends State<GalleFortProfilePage> {
                               leading: const CircleAvatar(
                                 maxRadius: 40,
                                 backgroundImage:
-                                    AssetImage('assets/images/doctor.jpeg'),
+                                    AssetImage('assets/images/back10.jpeg'),
                               ),
                               title:Text(
                                 'Shop Name: $ShopName',

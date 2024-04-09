@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:street_food/addFoodItemsKibulawala.dart';
 import 'package:street_food/addReviewsKibulawala.dart';
+import 'package:street_food/const.dart';
 
 class KibulawalaSinglePage extends StatefulWidget {
   final Map<String, dynamic> kibulawalaData;
@@ -55,7 +56,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: kBgcolor,
         title: Text('Shop Details'),
       ),
       body: Padding(
@@ -68,7 +69,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
                 children: [
                   const CircleAvatar(
                     radius: 130,
-                    backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
+                    backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
                   _buildDetailItem('Bording Name', kibulawalaData['ShopName']),
                   _buildDetailItem('address', kibulawalaData['Eddress']),

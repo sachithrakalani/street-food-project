@@ -82,7 +82,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
                               leading: const CircleAvatar(
                                 maxRadius: 40,
                                 backgroundImage:
-                                    AssetImage('assets/images/doctor.jpeg'),
+                                    AssetImage('assets/images/back10.jpeg'),
                               ),
                               title:Text(
                                 'Shop Name: $ShopName',
