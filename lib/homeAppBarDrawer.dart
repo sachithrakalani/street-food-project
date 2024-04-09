@@ -21,7 +21,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
         backgroundColor: kbappbarcolor,
         title: const Text(
           'Home',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 25),
         ),
         centerTitle: true,
       ),
