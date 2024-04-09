@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/aluthkadeSingleShopPage.dart';
+import 'package:street_food/const.dart';
 
 
 class AluthkadeProfilePage extends StatefulWidget {
@@ -35,8 +36,8 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: kBgcolor,
-        title: Text("Aluthkade Profiles"),
+        backgroundColor: kBgcolor,
+        title: const Text("Aluthkade Profiles"),
       ),
       body: Container(
         width: double.infinity,
@@ -69,7 +70,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AluthkadeSinglepage(
+                                builder: (context) => AluthkadeSinglePage(
                                   aluthkadeData: aluthkadeData,
                                 ),
                               ),

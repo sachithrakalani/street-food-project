@@ -1,10 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:street_food/addFoodItemsGalleFort.dart';
+import 'package:street_food/addReviewsGalleFort.dart';
 
 class GalleFortSinglePage extends StatefulWidget {
   final Map<String, dynamic> galleFortData;
-  const GalleFortSinglePage({Key? key, required this.galleFortData, }) : super(key: key);
+  const GalleFortSinglePage({Key? key, required this.galleFortData}) : super(key: key);
 
   @override
   State<GalleFortSinglePage> createState() => _GalleFortSinglePageState();
@@ -12,7 +13,7 @@ class GalleFortSinglePage extends StatefulWidget {
 
 class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
   List<DocumentSnapshot> foodItems = [];
-  
+
   Future<void> getFoodItems() async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -26,13 +27,13 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
       print('Error fetching vaccinations: $e');
     }
   }
-  
 
   @override
   void initState() {
     super.initState();
     getFoodItems();
   }
+
   @override
   Widget build(BuildContext context) {
     final galleFortData = widget.galleFortData;
@@ -51,7 +52,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
               child: ListView(
                 children: [
                   const CircleAvatar(
-                    radius: 130, 
+                    radius: 130,
                     backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
                   ),
                   _buildDetailItem('Bording Name', galleFortData['ShopName']),
@@ -61,66 +62,76 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
                   const Center(
                     child: Text(
                       'Food Items',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
                     ),
                   ),
                   ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: foodItems.length,
-                  itemBuilder: (context, index) {
-                    final foodItemsData = foodItems[index].data() as Map<String, dynamic>;
-                    final foodName = foodItemsData['Food Item Name'];
-                    final foodPrices = foodItemsData['Food Prices'];
-                    final foodIngredients = foodItemsData['Food Ingredients'];
-                    return ListTile(
-                      title: Text(
-                        'Food Name: $foodName',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        'Food Prices: $foodPrices\nFood Ingredients: $foodIngredients', 
-                      ),
-                    );
-                  },
-                ),
+                    shrinkWrap: true,
+                    itemCount: foodItems.length,
+                    itemBuilder: (context, index) {
+                      final foodItemsData = foodItems[index].data() as Map<String, dynamic>;
+                      final foodName = foodItemsData['Food Item Name'];
+                      final foodPrices = foodItemsData['Food Prices'];
+                      final foodIngredients = foodItemsData['Food Ingredients'];
+                      return ListTile(
+                        title: Text(
+                          'Food Name: $foodName',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          'Food Prices: $foodPrices\nFood Ingredients: $foodIngredients',
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  const Center(
+                    child: Text(
+                      'Reviews And Ratings',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                    ),
+                  ),
                 ],
               ),
             ),
-            const SizedBox(
-                height: 40,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddFoodItemsGalleFort(
-                        galleFortData: galleFortData,
-                      )
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.orange,
-                  fixedSize: const Size(100, 60),
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60),
-                  ),
-                ),
-                child: const Text(
-                  'Add Food Items',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
           ],
         ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddFoodItemsGalleFort(
+                    galleFortData: galleFortData,
+                  ),
+                ),
+              );
+            },
+            heroTag: 'addFoodItems',
+            backgroundColor: Colors.orange,
+            child: Icon(Icons.add),
+          ),
+          SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddReviewsGalleFort(
+                    galleFortData: galleFortData,
+                  ),
+                ),
+              );
+            },
+            heroTag: 'addReviews',
+            backgroundColor: Colors.orange,
+            child: Icon(Icons.rate_review),
+          ),
+        ],
       ),
     );
   }
