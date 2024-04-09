@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/aluthkadeProfilePage.dart';
+import 'package:street_food/galleFortProfilePage.dart';
+import 'package:street_food/kibulawelaProfilePage.dart';
 import 'package:street_food/shopDetailspage.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShopDetailsPage(
+                          builder: (context) => AluthkadeProfilePage(
                             
                           ),
                         ),
@@ -70,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AluthkadeProfilePage(
+                          builder: (context) => KibulawelaProfilePage(
                             
                           ),
                         ),
@@ -85,7 +87,14 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 10,),
                   InkWell(
                     onTap: () {
-                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GalleFortProfilePage(
+                            
+                          ),
+                        ),
+                      );
                     },
                     child: Image.asset(
                       'assets/images/ho3.jpg',
