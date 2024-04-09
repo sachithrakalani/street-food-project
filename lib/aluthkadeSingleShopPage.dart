@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/addFoodItemsAluthkade.dart';
+import 'package:street_food/addReviewsAluthkade.dart';
 import 'package:street_food/const.dart';
 
 class AluthkadeSinglepage extends StatefulWidget {
@@ -68,7 +69,7 @@ class _AluthkadeSinglepageState extends State<AluthkadeSinglepage> {
                     _buildDetailItem('Shop Name', aluthkadeData['ShopName']),
                     _buildDetailItem('Address', aluthkadeData['Eddress']),
                     _buildDetailItem('contact No', aluthkadeData['ContactNo']),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     const Center(
                       child: Text(
                         'Food Items',
@@ -76,25 +77,34 @@ class _AluthkadeSinglepageState extends State<AluthkadeSinglepage> {
                             fontWeight: FontWeight.bold, fontSize: 25),
                       ),
                     ),
+                    const SizedBox(height: 10),
+                    
                     ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: foodItems.length,
-                  itemBuilder: (context, index) {
-                    final foodItemsData = foodItems[index].data() as Map<String, dynamic>;
-                    final foodName = foodItemsData['Food Item Name'];
-                    final foodPrices = foodItemsData['Food Prices'];
-                    final foodIngredients = foodItemsData['Food Ingredients'];
-                    return ListTile(
-                      title: Text(
-                        'Food Name: $foodName',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      shrinkWrap: true,
+                      itemCount: foodItems.length,
+                      itemBuilder: (context, index) {
+                        final foodItemsData = foodItems[index].data() as Map<String, dynamic>;
+                        final foodName = foodItemsData['Food Item Name'];
+                        final foodPrices = foodItemsData['Food Prices'];
+                        final foodIngredients = foodItemsData['Food Ingredients'];
+                        return ListTile(
+                          title: Text(
+                            'Food Name: $foodName',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            'Food Prices: $foodPrices\nFood Ingredients: $foodIngredients', 
+                          ),
+                        );
+                      },
+                    ),
+                    const Center(
+                      child: Text(
+                        'Reviews And Ratings',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
                       ),
-                      subtitle: Text(
-                        'Food Prices: $foodPrices\nFood Ingredients: $foodIngredients', 
-                      ),
-                    );
-                  },
-                ),
+                    ),
                   ],
                 ),
               ),
@@ -122,6 +132,36 @@ class _AluthkadeSinglepageState extends State<AluthkadeSinglepage> {
                 ),
                 child: const Text(
                   'Add Food Items',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddReviewsAluthkade(
+                        aluthkadeData: aluthkadeData,
+                      )
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.orange,
+                  fixedSize: const Size(100, 60),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60),
+                  ),
+                ),
+                child: const Text(
+                  'Add Reviews And Ratings',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,

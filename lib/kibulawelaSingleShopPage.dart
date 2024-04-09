@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:street_food/addFoodItemsKibulawala.dart';
+import 'package:street_food/addReviewsKibulawala.dart';
 
 class KibulawelaSinglePage extends StatefulWidget {
   final Map<String, dynamic> kibulawelaData;
@@ -112,6 +113,34 @@ class _KibulawelaSinglePageState extends State<KibulawelaSinglePage> {
               ),
               child: const Text(
                 'Add Food Items',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            const SizedBox(height: 30,),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddReviewsKibulawala(
+                      kibulawelaData: kibulawelaData,
+                    )
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.orange,
+                fixedSize: const Size(100, 60),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(60),
+                ),
+              ),
+              child: const Text(
+                'Add Reviews And Ratings',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
