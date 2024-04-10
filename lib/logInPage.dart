@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:street_food/firebaseAuth.dart';
 import 'package:street_food/signUpPage.dart';
 import 'package:street_food/toast.dart';
@@ -12,11 +13,22 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  late SharedPreferences prefs;
 
-final FirebaseAuthServices _auth = FirebaseAuthServices();
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    initializeSharedPreferences();
+  }
+
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +150,10 @@ final FirebaseAuthServices _auth = FirebaseAuthServices();
     User? user = await _auth.signInWithEmailAndPassword(email, password);
 
     if (user != null) {
+      await prefs.setString('email', email);
+      await prefs.setString('password', password);
+      print('PASSWORD $password');
+      print('Email $email');
       showToast(message: "User is successfully Signed in");
       Navigator.pushNamed(context, "/home");
     } else {

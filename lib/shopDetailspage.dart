@@ -4,7 +4,8 @@ import 'package:street_food/const.dart';
 import 'package:street_food/toast.dart';
 
 class ShopDetailsPage extends StatefulWidget {
-  const ShopDetailsPage({super.key});
+  final String email;
+  const ShopDetailsPage({super.key, required this.email});
 
   @override
   State<ShopDetailsPage> createState() => _ShopDetailsPageState();
@@ -264,9 +265,10 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
         "Address": addressController.text,
         "ContactNo": contactNoController.text,
         "RegistrationNo": registrationNoController.text,
+        "Email":widget.email,
       };
       FirebaseFirestore.instance.collection(shopLocations!).add(data);
-      Navigator.pushNamed(context, "/home");
+      Navigator.pushNamed(context, "/login");
     }
   } else {
     showToast(message: "Please fill in all fields.");

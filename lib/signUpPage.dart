@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:street_food/firebaseAuth.dart';
 import 'package:street_food/logInPage.dart';
+import 'package:street_food/shopDetailspage.dart';
 import 'package:street_food/toast.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -12,14 +14,21 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
 
+  //late SharedPreferences prefs;
+
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  TextEditingController shopNameController = TextEditingController();
-  TextEditingController registrationNoController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController contactNoController = TextEditingController();
+  @override
+  // void initState() {
+  //   super.initState();
+  //   initializeSharedPreferences();
+  // }
+
+  // void initializeSharedPreferences() async {
+  //   prefs = await SharedPreferences.getInstance();
+  // }
 
   @override
   void dispose() {
@@ -28,13 +37,6 @@ class _SignUpPageState extends State<SignUpPage> {
     passwordController.dispose();
     super.dispose();
   }
-
-  String? shopLocations;
-  var locations = [
-    'Aluthkade',
-    'Kibulawela',
-    'Galle Fort',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -188,9 +190,9 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
     if (int.tryParse(password) == null) {
-    showToast(message: "Password should be an integer");
-    return;
-  }
+      showToast(message: "Password should be an integer");
+      return;
+    }
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
@@ -199,7 +201,14 @@ class _SignUpPageState extends State<SignUpPage> {
       usernameController.clear();
       emailController.clear();
       passwordController.clear();
-      Navigator.pushNamed(context, "/shopdetails");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ShopDetailsPage(
+            email: email,
+          ),
+        ),
+      );
     } else {
       showToast(message: "Some error happened");
     }

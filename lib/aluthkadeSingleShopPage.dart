@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:street_food/addFoodItemsAluthkade.dart';
 import 'package:street_food/addReviewsAluthkade.dart';
 import 'package:street_food/const.dart';
@@ -12,8 +13,23 @@ class AluthkadeSinglePage extends StatefulWidget {
 }
 
 class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
+  late SharedPreferences prefs;
   List<DocumentSnapshot> foodItems = [];
   List<DocumentSnapshot> aluthkadeReviews = [];
+  bool isEnableAddFoodButton = false; 
+
+  
+
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    final String? loginUserEmail = prefs.getString('email');
+    print('Login user EMAIL $loginUserEmail');
+    print(widget.aluthkadeData['Email']);
+    if(loginUserEmail == widget.aluthkadeData['Email']){
+      isEnableAddFoodButton = true;
+    }
+    print('Enable $isEnableAddFoodButton');
+  }
 
   Future<void> getFoodItems() async {
     try {
@@ -47,7 +63,10 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     super.initState();
     getFoodItems();
     getreviews();
+    initializeSharedPreferences();
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +99,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
                     ),
                   ),
+                  
                   ListView.builder(
                     shrinkWrap: true,
                     itemCount: foodItems.length,
@@ -145,6 +165,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          if(isEnableAddFoodButton == true)
           FloatingActionButton(
             onPressed: () {
               Navigator.push(

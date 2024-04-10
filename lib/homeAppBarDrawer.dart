@@ -7,6 +7,7 @@ import 'package:street_food/signUpPage.dart';
 
 
 class HomeAppBar extends StatefulWidget {
+  
   const HomeAppBar({super.key});
 
   @override

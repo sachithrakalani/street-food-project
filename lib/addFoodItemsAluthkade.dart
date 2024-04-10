@@ -41,7 +41,7 @@ class _AddFoodItemsAluthkadeState extends State<AddFoodItemsAluthkade> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/back1.jpeg'),
+            image: AssetImage(''),
             fit: BoxFit.cover,
           ),
         ),
