@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:street_food/const.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: kBgcolor,
         title: const Text(
           'Google Map',
           style: TextStyle(
