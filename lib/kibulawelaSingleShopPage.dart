@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:street_food/addFoodItemsKibulawala.dart';
 import 'package:street_food/addReviewsKibulawala.dart';
 import 'package:street_food/const.dart';
@@ -13,9 +14,23 @@ class KibulawalaSinglePage extends StatefulWidget {
 }
 
 class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
+  late SharedPreferences prefs;
   List<DocumentSnapshot> foodItems = [];
   List<DocumentSnapshot> kibulawalaReviews = [];
+  bool isEnableAddFoodButton = false; 
 
+  
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    final String? loginUserEmail = prefs.getString('email');
+    print('Login user EMAIL $loginUserEmail');
+    print(widget.kibulawalaData['Email']);
+    if(loginUserEmail == widget.kibulawalaData['Email']){
+      isEnableAddFoodButton = true;
+    }
+    print('Enable $isEnableAddFoodButton');
+  }
+  
   Future<void> getFoodItems() async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -48,6 +63,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
     super.initState();
     getFoodItems();
     getreviews();
+    initializeSharedPreferences();
   }
 
   @override
@@ -147,6 +163,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          if(isEnableAddFoodButton == true)
           FloatingActionButton(
             onPressed: () {
               Navigator.push(

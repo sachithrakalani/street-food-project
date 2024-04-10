@@ -58,7 +58,16 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   color: kbappbarcolor,
                 ),
               ),
-              MenuList(press: () {}, title: 'Home', icon: Icons.home),
+              MenuList(
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeAppBar()),
+                  );
+                }, 
+                title: 'Home', 
+                icon: Icons.home
+              ),
               MenuList(
               press: () {
                 Navigator.push(

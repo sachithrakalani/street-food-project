@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/firebaseAuth.dart';
 import 'package:street_food/logInPage.dart';
+import 'package:street_food/shopDetailspage.dart';
 import 'package:street_food/toast.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -16,11 +18,6 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  TextEditingController shopNameController = TextEditingController();
-  TextEditingController registrationNoController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController contactNoController = TextEditingController();
-
   @override
   void dispose() {
     usernameController.dispose();
@@ -29,18 +26,11 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  String? shopLocations;
-  var locations = [
-    'Aluthkade',
-    'Kibulawela',
-    'Galle Fort',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: kbappbarcolor,
         title: const Text(
           'Sign Up',
           style: TextStyle(
@@ -124,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: double.infinity,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: kbappbarcolor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: const Center(
@@ -160,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: const Text(
                             'Log in',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: kbappbarcolor,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
@@ -188,9 +178,9 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
     if (int.tryParse(password) == null) {
-    showToast(message: "Password should be an integer");
-    return;
-  }
+      showToast(message: "Password should be an integer");
+      return;
+    }
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
@@ -199,7 +189,14 @@ class _SignUpPageState extends State<SignUpPage> {
       usernameController.clear();
       emailController.clear();
       passwordController.clear();
-      Navigator.pushNamed(context, "/shopdetails");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ShopDetailsPage(
+            email: email,
+          ),
+        ),
+      );
     } else {
       showToast(message: "Some error happened");
     }
