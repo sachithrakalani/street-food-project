@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
         '/': (context) => const GetStartPage(),
         '/shopdetails':(context)=> const ShopDetailsPage (),
         '/home':(context)=> const HomeAppBar(),
-        //'/singleshoppage':(context)=> const ShopDetailsPage (),
       },
     );
   }

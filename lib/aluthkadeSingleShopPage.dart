@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:street_food/addFoodItemsAluthkade.dart';
 import 'package:street_food/addReviewsAluthkade.dart';
+import 'package:street_food/const.dart';
 class AluthkadeSinglePage extends StatefulWidget {
   final Map<String, dynamic> aluthkadeData;
   const AluthkadeSinglePage({Key? key, required this.aluthkadeData}) : super(key: key);
@@ -18,7 +19,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Aluthkade Food Items')
-          .where('Registration No', isEqualTo: widget.aluthkadeData['Registration No'])
+          .where('Registration No', isEqualTo: widget.aluthkadeData['RegistrationNo'])
           .get();
       setState(() {
         foodItems = querySnapshot.docs;
@@ -31,7 +32,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Aluthkade Reviews')
-          .where('Registration No', isEqualTo: widget.aluthkadeData['Registration No'])
+          .where('Registration No', isEqualTo: widget.aluthkadeData['RegistrationNo'])
           .get();
       setState(() {
        aluthkadeReviews = querySnapshot.docs;
@@ -54,8 +55,8 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
-        title: Text('Shop Details'),
+        backgroundColor: kBgcolor,
+        title: Text('Aluthkade Street Shop Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -67,10 +68,10 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
                 children: [
                   const CircleAvatar(
                     radius: 130,
-                    backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
+                    backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
                   _buildDetailItem('Shop Name', aluthkadeData['ShopName']),
-                  _buildDetailItem('Address', aluthkadeData['Eddress']),
+                  _buildDetailItem('Address', aluthkadeData['Address']),
                   _buildDetailItem('Contact No', aluthkadeData['ContactNo']),
                   const SizedBox(height: 20),
                   const Center(

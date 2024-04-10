@@ -139,7 +139,7 @@ final FirebaseAuthServices _auth = FirebaseAuthServices();
 
     if (user != null) {
       showToast(message: "User is successfully Signed in");
-      //Navigator.push(context, HomeAppBar());
+      Navigator.pushNamed(context, "/home");
     } else {
       showToast(message: "Some error happend");
     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:street_food/addFoodItemsKibulawala.dart';
 import 'package:street_food/addReviewsKibulawala.dart';
+import 'package:street_food/const.dart';
 
 class KibulawalaSinglePage extends StatefulWidget {
   final Map<String, dynamic> kibulawalaData;
@@ -19,7 +20,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Kibulawala Food Items')
-          .where('Registration No', isEqualTo: widget.kibulawalaData['Registration No'])
+          .where('Registration No', isEqualTo: widget.kibulawalaData['RegistrationNo'])
           .get();
       setState(() {
         foodItems = querySnapshot.docs;
@@ -32,7 +33,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Kibulawala Reviews')
-          .where('Registration No', isEqualTo: widget.kibulawalaData['Registration No'])
+          .where('Registration No', isEqualTo: widget.kibulawalaData['RegistrationNo'])
           .get();
       setState(() {
        kibulawalaReviews = querySnapshot.docs;
@@ -55,8 +56,8 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
-        title: Text('Shop Details'),
+        backgroundColor: kBgcolor,
+        title: Text('Kibulawala Street Shop Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -68,11 +69,11 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
                 children: [
                   const CircleAvatar(
                     radius: 130,
-                    backgroundImage: AssetImage('assets/images/pethouse.jpeg'),
+                    backgroundImage: AssetImage('assets/images/back10.jpeg'),
                   ),
-                  _buildDetailItem('Bording Name', kibulawalaData['ShopName']),
-                  _buildDetailItem('address', kibulawalaData['Eddress']),
-                  _buildDetailItem('contactNo', kibulawalaData['ContactNo']),
+                  _buildDetailItem('Shop Name', kibulawalaData['ShopName']),
+                  _buildDetailItem('Address', kibulawalaData['Address']),
+                  _buildDetailItem('Contact No', kibulawalaData['ContactNo']),
                   const SizedBox(height: 20),
                   const Center(
                     child: Text(

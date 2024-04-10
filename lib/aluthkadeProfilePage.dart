@@ -61,7 +61,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
                     itemBuilder: (context, index) {
                       final aluthkadeData = aluthkade[index].data() as Map<String, dynamic>;
                       final ShopName = aluthkadeData['ShopName'];
-                      final Address = aluthkadeData['Eddress'];
+                      final Address = aluthkadeData['Address'];
                       final ContactNo = aluthkadeData['ContactNo'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -82,7 +82,7 @@ class _AluthkadeProfilePageState extends State<AluthkadeProfilePage> {
                               leading: const CircleAvatar(
                                 maxRadius: 40,
                                 backgroundImage:
-                                    AssetImage('assets/images/doctor.jpeg'),
+                                    AssetImage('assets/images/back10.jpeg'),
                               ),
                               title:Text(
                                 'Shop Name: $ShopName',

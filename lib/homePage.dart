@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/aluthkadeProfilePage.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/galleFortProfilePage.dart';
 import 'package:street_food/kibulawelaProfilePage.dart';
 
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                       'Where To Go ?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20
+                        fontSize: 30
                       ),
                     ),
                     const SizedBox(height: 30,),
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: Image.asset('assets/images/ho2.jpg'),
+                      child: Image.asset('assets/images/back3.jpeg'),
                     ),
                     const SizedBox(height: 10,),
                     const Text(
@@ -84,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: Image.asset('assets/images/ho3.jpg'),
+                      child: Image.asset('assets/images/back11.jpeg'),
                     ),
                     const SizedBox(height: 10,),
                     const Text(
@@ -92,7 +93,38 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                       ),
-                    )   
+                    ),
+                    const SizedBox(height: 30,),
+                    const Divider(color:kbappbarcolor),
+                    const SizedBox(height: 20,),
+                    const Text(
+                      'Food Categorys',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30
+                      ),
+                    ),
+                    const SizedBox(height: 30,),
+                    InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Image.asset('assets/images/back14.jpeg'),
+                    ),
+                    const SizedBox(height: 50,),
+                    InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Image.asset('assets/images/back13.jpeg',),
+                    ),
+                    const SizedBox(height: 50,),
+                    InkWell(
+                      onTap: () {
+
+                      },
+                      child: Image.asset('assets/images/back12.jpeg'),
+                    ),
                   ],
                 ),
               ) 

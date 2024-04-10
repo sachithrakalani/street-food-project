@@ -61,7 +61,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
                     itemBuilder: (context, index) {
                       final kibulawalaData = kibulawala[index].data() as Map<String, dynamic>;
                       final ShopName = kibulawalaData['ShopName'];
-                      final Address = kibulawalaData['Eddress'];
+                      final Address = kibulawalaData['Address'];
                       final ContactNo = kibulawalaData['ContactNo'];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -82,7 +82,7 @@ class _KibulawelaProfilePageState extends State<KibulawelaProfilePage> {
                               leading: const CircleAvatar(
                                 maxRadius: 40,
                                 backgroundImage:
-                                    AssetImage('assets/images/doctor.jpeg'),
+                                    AssetImage('assets/images/back10.jpeg'),
                               ),
                               title:Text(
                                 'Shop Name: $ShopName',

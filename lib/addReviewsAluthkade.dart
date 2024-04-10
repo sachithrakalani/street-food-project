@@ -58,12 +58,12 @@ class _AddReviewsAluthkadeState extends State<AddReviewsAluthkade> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/paw.jpg'),
+            image: AssetImage('assets/images/back2.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 40),
+          padding: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -143,9 +143,8 @@ class _AddReviewsAluthkadeState extends State<AddReviewsAluthkade> {
                           "Rating": rating,
                           "Date": '${selectedDate!.toLocal()}'.split(' ')[0],
                         };
-                        await FirebaseFirestore.instance
-                            .collection('Aluthkade Reviews')
-                            .add(data);
+                        await FirebaseFirestore.instance.collection('Aluthkade Reviews').add(data);
+                        Navigator.pushNamed(context, "/home");
                       } catch (e) {
                         print("Error adding review: $e");
                       }
