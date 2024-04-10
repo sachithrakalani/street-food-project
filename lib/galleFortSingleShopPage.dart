@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:street_food/addFoodItemsGalleFort.dart';
 import 'package:street_food/addReviewsGalleFort.dart';
 import 'package:street_food/const.dart';
@@ -13,8 +14,21 @@ class GalleFortSinglePage extends StatefulWidget {
 }
 
 class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
+  late SharedPreferences prefs;
   List<DocumentSnapshot> foodItems = [];
   List<DocumentSnapshot> galleFortReviews = [];
+  bool isEnableAddFoodButton = false; 
+
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    final String? loginUserEmail = prefs.getString('email');
+    print('Login user EMAIL $loginUserEmail');
+    print(widget.galleFortData['Email']);
+    if(loginUserEmail == widget.galleFortData['Email']){
+      isEnableAddFoodButton = true;
+    }
+    print('Enable $isEnableAddFoodButton');
+  }
 
   Future<void> getFoodItems() async {
     try {
@@ -48,6 +62,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
     super.initState();
     getFoodItems();
     getreviews();
+    initializeSharedPreferences();
   }
 
   @override
@@ -146,6 +161,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          if(isEnableAddFoodButton == true)
           FloatingActionButton(
             onPressed: () {
               Navigator.push(

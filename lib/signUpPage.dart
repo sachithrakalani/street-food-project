@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/firebaseAuth.dart';
 import 'package:street_food/logInPage.dart';
 import 'package:street_food/shopDetailspage.dart';
@@ -14,21 +14,9 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
 
-  //late SharedPreferences prefs;
-
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  @override
-  // void initState() {
-  //   super.initState();
-  //   initializeSharedPreferences();
-  // }
-
-  // void initializeSharedPreferences() async {
-  //   prefs = await SharedPreferences.getInstance();
-  // }
 
   @override
   void dispose() {
@@ -42,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: kbappbarcolor,
         title: const Text(
           'Sign Up',
           style: TextStyle(
@@ -126,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: double.infinity,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: kbappbarcolor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: const Center(
@@ -162,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: const Text(
                             'Log in',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: kbappbarcolor,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),

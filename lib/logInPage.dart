@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:street_food/const.dart';
 import 'package:street_food/firebaseAuth.dart';
 import 'package:street_food/signUpPage.dart';
 import 'package:street_food/toast.dart';
@@ -34,7 +35,7 @@ class _LogInPageState extends State<LogInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: kbappbarcolor,
         title: const Text(
           'Login',
           style:TextStyle(
@@ -88,7 +89,7 @@ class _LogInPageState extends State<LogInPage> {
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: kbappbarcolor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const Center(
@@ -124,7 +125,7 @@ class _LogInPageState extends State<LogInPage> {
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color:kbappbarcolor,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
