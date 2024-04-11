@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:street_food/aluthkadeProfilePage.dart';
-import 'package:street_food/const.dart';
 import 'package:street_food/galleFortProfilePage.dart';
 import 'package:street_food/kibulawelaProfilePage.dart';
 
