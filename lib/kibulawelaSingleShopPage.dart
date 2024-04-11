@@ -41,7 +41,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
         foodItems = querySnapshot.docs;
       });
     } catch (e) {
-      print('Error fetching vaccinations: $e');
+      print('Error fetching Food Items: $e');
     }
   }
   Future<void> getreviews() async {
@@ -54,7 +54,7 @@ class _KibulawalaSinglePageState extends State<KibulawalaSinglePage> {
        kibulawalaReviews = querySnapshot.docs;
       });
     } catch (e) {
-      print('Error fetching vaccinations: $e');
+      print('Error fetching Reviews : $e');
     }
   }
 

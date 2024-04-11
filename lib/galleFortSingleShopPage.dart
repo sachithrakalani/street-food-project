@@ -40,7 +40,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
         foodItems = querySnapshot.docs;
       });
     } catch (e) {
-      print('Error fetching vaccinations: $e');
+      print('Error fetching Food Items: $e');
     }
   }
   Future<void> getreviews() async {
@@ -53,7 +53,7 @@ class _GalleFortSinglePageState extends State<GalleFortSinglePage> {
        galleFortReviews = querySnapshot.docs;
       });
     } catch (e) {
-      print('Error fetching vaccinations: $e');
+      print('Error fetching Reviews: $e');
     }
   }
 

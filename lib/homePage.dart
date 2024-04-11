@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Image.asset('assets/images/back11.jpeg'),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 20,),
                     const Text(
                       'Galle Fort',style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -95,36 +95,36 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     const SizedBox(height: 30,),
-                    const Divider(color:kbappbarcolor),
-                    const SizedBox(height: 20,),
-                    const Text(
-                      'Food Categorys',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30
-                      ),
-                    ),
-                    const SizedBox(height: 30,),
-                    InkWell(
-                      onTap: () {
+                    // const Divider(color:kbappbarcolor),
+                    // const SizedBox(height: 20,),
+                    // const Text(
+                    //   'Food Categorys',
+                    //   style: TextStyle(
+                    //     fontWeight: FontWeight.bold,
+                    //     fontSize: 30
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 30,),
+                    // InkWell(
+                    //   onTap: () {
                         
-                      },
-                      child: Image.asset('assets/images/back14.jpeg'),
-                    ),
-                    const SizedBox(height: 50,),
-                    InkWell(
-                      onTap: () {
+                    //   },
+                    //   child: Image.asset('assets/images/back14.jpeg'),
+                    // ),
+                    // const SizedBox(height: 50,),
+                    // InkWell(
+                    //   onTap: () {
                         
-                      },
-                      child: Image.asset('assets/images/back13.jpeg',),
-                    ),
-                    const SizedBox(height: 50,),
-                    InkWell(
-                      onTap: () {
+                    //   },
+                    //   child: Image.asset('assets/images/back13.jpeg',),
+                    // ),
+                    // const SizedBox(height: 50,),
+                    // InkWell(
+                    //   onTap: () {
 
-                      },
-                      child: Image.asset('assets/images/back12.jpeg'),
-                    ),
+                    //   },
+                    //   child: Image.asset('assets/images/back12.jpeg'),
+                    // ),
                   ],
                 ),
               ) 

@@ -41,7 +41,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
         foodItems = querySnapshot.docs;
       });
     } catch (e) {
-      print('Error fetching vaccinations: $e');
+      print('Error fetching Food Items: $e');
     }
   }
   Future<void> getreviews() async {
@@ -54,7 +54,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
        aluthkadeReviews = querySnapshot.docs;
       });
     } catch (e) {
-      print('Error fetching vaccinations: $e');
+      print('Error fetching Reviews: $e');
     }
   }
 
@@ -75,7 +75,7 @@ class _AluthkadeSinglePageState extends State<AluthkadeSinglePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBgcolor,
-        title: Text('Aluthkade Street Shop Details'),
+        title: const Text('Aluthkade Street Shop Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
